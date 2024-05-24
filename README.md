@@ -29,4 +29,5 @@ This tool is a powerful Discord selfbot designed for educational purposes. It pr
 1. Clone the repository:
 
    ```sh
-   git clone https://github.com/yourusername/discord-selfbot-nuker.git
+   git clone https://github.com/devrock07/rock-nuker.git
+   ```
