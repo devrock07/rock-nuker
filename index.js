@@ -1,18 +1,22 @@
 const { Client } = require('discord.js-selfbot-v13');
 const { prefix, token } = require('./config');
-const chalk = require('chalk');
 const figlet = require("figlet");
 
 const client = new Client();
 
-client.on('ready', () => {
-  figlet('ROCK ON TOP', (err, data) => {
-    if (err) {
-      console.log('Error:', err);
-      return;
-    }
-    console.log(chalk.yellow(data));
-  });
+client.on('ready', async () => {
+  try {
+    const { default: chalk } = await import('chalk');
+    figlet('ROCK ON TOP', (err, data) => {
+      if (err) {
+        console.log('Error:', err);
+        return;
+      }
+      console.log(chalk.yellow(data));
+    });
+  } catch (error) {
+    console.error('Failed to load chalk module:', error);
+  }
 });
 
 client.on('guildCreate', guild => {
