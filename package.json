@@ -1,0 +1,17 @@
+{
+  "name": "rock-nuker",
+  "version": "1.0.0",
+  "description": "A Discord bot with various administrative commands",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js-selfbot-v13": "^1.0.0",
+    "figlet": "^1.5.2",
+    "chalk": "^5.0.1"
+  }
+}
