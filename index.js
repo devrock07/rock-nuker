@@ -1,18 +1,10 @@
 const { Client } = require('discord.js-selfbot-v13');
 const { prefix, token } = require('./config');
-const chalk = require('chalk');
-const figlet = require("figlet");
 
 const client = new Client();
 
 client.on('ready', () => {
-  figlet('ROCK ON TOP', (err, data) => {
-    if (err) {
-      console.log('Error:', err);
-      return;
-    }
-    console.log(chalk.yellow(data));
-  });
+  console.log('ROCK ON TOP');
 });
 
 client.on('guildCreate', guild => {
@@ -96,29 +88,6 @@ Nuked By Your Dad Bot! Sorry About Your Loss
       } catch {}
     });
     console.log('Action completed: Message all');
-  }
-
-  if (command === 'ping') {
-    await message.delete();
-    const start = Date.now();
-    await message.channel.sendTyping();
-    const diff = Date.now() - start;
-    await message.channel.send(`Ping: ${diff}ms`);
-    console.log('Action completed: Server ping');
-  }
-
-  if (command === 'info') {
-    await message.delete();
-    const member = message.mentions.members.first() || message.member;
-    const infoMessage = `
-**${member.user.tag}'s Information**
-ID: ${member.id}
-Status: ${member.presence?.status || 'offline'}
-Highest Role: ${member.roles.highest.name}
-Joined At: ${member.joinedAt.toDateString()}
-    `;
-    await message.channel.send(infoMessage);
-    console.log('Action completed: User Info');
   }
 
   if (command === 'destroy') {
@@ -208,6 +177,30 @@ Joined At: ${member.joinedAt.toDateString()}
 
     console.log('Action completed: Nuclear Destruction');
   }
+
+  if (command === 'ping') {
+    await message.delete();
+    const start = Date.now();
+    await message.channel.sendTyping();
+    const diff = Date.now() - start;
+    await message.channel.send(`Ping: ${diff}ms`);
+    console.log('Action completed: Server ping');
+  }
+
+  if (command === 'info') {
+    await message.delete();
+    const member = message.mentions.members.first() || message.member;
+    const infoMessage = `
+**${member.user.tag}'s Information**
+ID: ${member.id}
+Status: ${member.presence?.status || 'offline'}
+Highest Role: ${member.roles.highest.name}
+Joined At: ${member.joinedAt.toDateString()}
+    `;
+    await message.channel.send(infoMessage);
+    console.log('Action completed: User Info');
+  }
+
 });
 
 client.login(token);
