@@ -31,3 +31,31 @@ This tool is a powerful Discord selfbot designed for educational purposes. It pr
    ```sh
    git clone https://github.com/devrock07/rock-nuker.git
    ```
+2. Go to the Directory
+   ```sh
+   cd rock-nuker
+   ```
+3. Edit `config.js`
+   ```sh
+   nano config.json
+   ```
+4. It should look like this:
+   ```
+   module.exports = {
+
+    prefix: '-',
+
+    token: 'ADD HERE'
+
+  };```
+  
+6. Replace:
+Replace `ADD HERE` with your token.
+If you want, you can replace the prefix too!
+
+7. Run the code.
+   ```js
+   node index.js
+   ```
+
+   
