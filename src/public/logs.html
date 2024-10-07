@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Command Logs</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Bot Command Logs</h1>
+        <ul id="logList">
+            <!-- Logs will be injected here dynamically -->
+        </ul>
+
+        <!-- Form to update bot status -->
+        <div class="status-form">
+            <h2>Update Bot Status</h2>
+            <form id="statusForm">
+                <input type="text" id="statusInput" placeholder="Enter new bot status">
+                <select id="statusType">
+                    <option value="PLAYING">Playing</option>
+                    <option value="STREAMING">Streaming</option>
+                    <option value="LISTENING">Listening</option>
+                    <option value="WATCHING">Watching</option>
+                </select>
+                <button type="submit">Update Status</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Fetch logs from the server
+        async function loadLogs() {
+            const response = await fetch("/api/logs");
+            const logs = await response.json();
+            const logList = document.getElementById('logList');
+            logList.innerHTML = logs.map(log => `<li>${log}</li>`).join('');
+        }
+
+        // Load logs on page load
+        window.onload = loadLogs;
+
+        // Optionally set an interval to refresh the logs periodically (e.g., every 5 seconds)
+        setInterval(loadLogs, 5000); // Fetch logs every 5 seconds
+
+        // Handle form submission for updating status
+        const statusForm = document.getElementById('statusForm');
+        statusForm.onsubmit = async (e) => {
+            e.preventDefault();
+            const statusInput = document.getElementById('statusInput').value;
+            const statusType = document.getElementById('statusType').value;
+            
+            await fetch('/api/status', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ status: statusInput, type: statusType })
+            });
+        };
+    </script>
+</body>
+</html>
