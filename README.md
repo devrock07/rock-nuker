@@ -25,6 +25,6 @@ ROCK NUKER V1 is a powerful Discord bot designed to perform mass actions such as
 1. Clone this repository or download the ZIP file.
 2. Navigate to the project directory.
 3. Install the required dependencies:
-   ```bash
-   npm install
+   ```
+   npm install 
 ```
